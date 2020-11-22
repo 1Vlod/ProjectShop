@@ -1,9 +1,18 @@
-import React from 'react';
+import React from 'react'
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 
-function App() {
+import StartPage from "./pages/StartPage"
+import ProductsPage from "./pages/ProductsPage"
+
+function App () {
+  return (
+    <ProductsPage/>
+  )
+}
+
+function ReduxApp() {
   return (
     <div className="App">
       <header className="App-header">

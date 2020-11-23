@@ -1,14 +1,22 @@
 import React from 'react'
+import { Switch, Route } from "react-router-dom"
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { Counter } from './features/counter/Counter'
 import './App.css';
 
 import StartPage from "./pages/StartPage"
-import ProductsPage from "./pages/ProductsPage"
+import Shop from "./pages/ShopPage"
 
 function App () {
   return (
-    <ProductsPage/>
+    <Switch>
+      <Route path="/:any">
+        <Shop/>
+      </Route>
+      <Route path="/">
+        <StartPage/>
+      </Route>
+    </Switch>
   )
 }
 

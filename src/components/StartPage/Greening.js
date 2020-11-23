@@ -6,6 +6,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import { LinkContainer } from "react-router-bootstrap"
 
 const Greeting = () => {
   return (
@@ -20,12 +21,13 @@ const Greeting = () => {
           <InputGroup>
             <FormControl placeholder="User"/>
             <InputGroup.Append>
-              <Button variant="primary">Continue!</Button>
+              <LinkContainer to="/products">
+                <Button variant="primary">Continue!</Button>
+              </LinkContainer>
             </InputGroup.Append>
           </InputGroup>
         </Col>
       </Row>
-      
     </Jumbotron>
   )
 }

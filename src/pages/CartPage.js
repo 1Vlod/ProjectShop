@@ -6,20 +6,14 @@ import Col from "react-bootstrap/Col"
 
 import ProductCard from "../components/ProductsPage/ProductCard"
 
-const ProductsPage = () => {
+const CartPage = () => {
 
   return (
     <Container className="mt-5">
-      <h1 className="display-1">Products</h1>
+      <h1 className="display-1">Cart</h1>
       <Row>
         <Col>
-          <ProductCard/>
-        </Col>
-        <Col>
-          <ProductCard/>
-        </Col>
-        <Col>
-          <ProductCard/>
+          <ProductCard cart={true}/>
         </Col>
         <Col>
           <ProductCard/>
@@ -29,4 +23,4 @@ const ProductsPage = () => {
   )
 }
 
-export default ProductsPage
+export default CartPage

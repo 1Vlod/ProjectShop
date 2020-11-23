@@ -4,7 +4,14 @@ import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import Col from "react-bootstrap/Col"
 
-const ProductCard = () => {
+const ProductCard = ({ cart }) => {
+
+  const getBtnCart = () => {
+    if (cart) {
+      return <Button variant="danger" size="lg">Remove</Button>
+    }
+    return <Button variant="primary" size="lg">Add to Cart</Button>
+  }
 
   return (
     <Card style={{width: "300px"}} className="mt-5">
@@ -17,7 +24,7 @@ const ProductCard = () => {
           exercitationem, repudiandae nisi!
         </Card.Text>
         <div className="d-flex justify-content-between">
-          <Button variant="primary" size="lg">Add to cart</Button>
+          {getBtnCart()}
           <Button variant="secondary" size="lg">Like</Button>
         </div>
       </Card.Body>

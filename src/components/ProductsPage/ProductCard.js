@@ -2,32 +2,50 @@ import React from "react"
 
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
-import Col from "react-bootstrap/Col"
+import ListGroup from "react-bootstrap/ListGroup"
 
-const ProductCard = ({ cart }) => {
+import { useDispatch } from "react-redux"
+import { addProduct, removeProduct } from "../../features/userCart/userCartSlice"
+
+const ProductCard = ({ cart, product, amount }) => {
+
+  const dispatch = useDispatch()
 
   const getBtnCart = () => {
     if (cart) {
-      return <Button variant="danger" size="lg">Remove</Button>
+      return (
+        <Button 
+          variant="danger" 
+          size="lg"
+          onClick={() => dispatch(removeProduct({ id: product.id }))}>
+          Remove
+        </Button>
+      )
     }
-    return <Button variant="primary" size="lg">Add to Cart</Button>
+    return (
+      <Button  
+        variant="primary" 
+        size="lg" 
+        onClick={() => dispatch(addProduct({ product }))}>
+        Add to Cart
+      </Button>
+    )
   }
 
   return (
     <Card style={{width: "300px"}} className="mt-5">
-      <Card.Img variant="top" src="https://via.placeholder.com/300x200" style={{height: "200px"}}/>
-      <Card.Body>
-        <Card.Title> Product's name</Card.Title>
-        <Card.Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Libero sunt reiciendis accusamus quasi alias laborum 
-          exercitationem, repudiandae nisi!
-        </Card.Text>
-        <div className="d-flex justify-content-between">
+      <Card.Img variant="top" src={product.img} style={{height: "200px"}}/>
+        <Card.Body className="p-3">
+          <Card.Title className="m-0">{product.name}</Card.Title>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>Price: {product.price}</ListGroup.Item>
+          <ListGroup.Item>Amount: {amount || "∞"}</ListGroup.Item>
+        </ListGroup>
+        {/* <Card.Subtitle className="mb-2 text-muted">{product.price}</Card.Subtitle> */}
+        <Card.Body className="d-flex justify-content-between">
           {getBtnCart()}
-          <Button variant="secondary" size="lg">Like</Button>
-        </div>
-      </Card.Body>
+        </Card.Body>
     </Card>
   )
 }

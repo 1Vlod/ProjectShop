@@ -27,7 +27,7 @@ const ProductsPage = () => {
 
     return posts.map(item => {
       return (
-        <Col key={item.id}>
+        <Col key={item.id} style={{maxWidth: "300px"}}>
           {JSON.stringify(item)}
         </Col>
       )
@@ -44,9 +44,9 @@ const ProductsPage = () => {
           </Col>
         ))}
       </Row>
-      <Row>
+      {/* <Row>
         {renderPosts()}
-      </Row>
+      </Row> */}
     </Container>
   )
 }

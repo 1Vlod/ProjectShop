@@ -8,11 +8,12 @@ import Alert from "react-bootstrap/Alert"
 import ProductCard from "../components/ProductsPage/ProductCard"
 
 import { useSelector } from "react-redux"
-import { selectUserCart } from "../features/userCart/userCartSlice"
+import { selectUserCart, selectUserName } from "../features/userCart/userCartSlice"
 import { getTotalPrice } from "../features/userCart/selectors"
 
 const CartPage = () => {
   const items = useSelector(selectUserCart)
+  const userName = useSelector(selectUserName)
   const state = useSelector(state => state) 
 
   const renderItems = () => {
@@ -25,7 +26,7 @@ const CartPage = () => {
 
   return (
     <Container className="mt-5">
-      <h1 className="display-1">Cart</h1>
+      <h1 className="display-1">{userName}'s Cart</h1>
       <h2 className="display-2">Total price: {getTotalPrice(state)}$</h2>
       <Row>
         {items.length ? renderItems() : <Col><Alert variant="primary">You didn't add products to Cart</Alert></Col>}

@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container"
 import ProductsPage from "./ProductsPage"
 import CartPage from "./CartPage"
 import Menu from "../components/Menu"
+import FoodPage from './FoodPage'
 
 const Shop = () => {
 
@@ -24,6 +25,9 @@ const Shop = () => {
             </Route>
             <Route path="/cart">
               <CartPage/>
+            </Route>
+            <Route path="/food">
+              <FoodPage/>
             </Route>
           </Switch>
         </Col>

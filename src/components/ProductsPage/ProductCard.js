@@ -10,7 +10,6 @@ import { addProduct, removeProduct } from "../../features/userCart/userCartSlice
 const ProductCard = ({ cart, product, amount }) => {
 
   const dispatch = useDispatch()
-
   const getBtnCart = () => {
     if (cart) {
       return (
@@ -39,10 +38,9 @@ const ProductCard = ({ cart, product, amount }) => {
           <Card.Title className="m-0">{product.name}</Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroup.Item>Price: {product.price}</ListGroup.Item>
+          <ListGroup.Item>Price: {product.price || 0}</ListGroup.Item>
           <ListGroup.Item>Amount: {amount || "∞"}</ListGroup.Item>
         </ListGroup>
-        {/* <Card.Subtitle className="mb-2 text-muted">{product.price}</Card.Subtitle> */}
         <Card.Body className="d-flex justify-content-between">
           {getBtnCart()}
         </Card.Body>

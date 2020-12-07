@@ -12,11 +12,11 @@ const Menu = () => {
   return (
     <Nav className="flex-column bg-dark px-2 pt-5 h-100">
       <div className="sticky-top">
-        <LinkContainer to="/" exact={true} className="text-light mt-3">
-          <Nav.Link className="h2">Home</Nav.Link>
-        </LinkContainer>
         <LinkContainer to="/products" className="text-light mt-3" activeClassName="bg-light text-dark rounded-pill">
           <Nav.Link className="h2">Products</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/food" className="text-light mt-3" activeClassName="bg-light text-dark rounded-pill">
+          <Nav.Link className="h2">Food Shop</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/cart" className="text-light mt-3" activeClassName="bg-light text-dark rounded-pill">
           <Nav.Link className="h2">{userName}'s Cart</Nav.Link>

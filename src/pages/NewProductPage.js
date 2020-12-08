@@ -11,54 +11,53 @@ import ProductCard from "../components/ProductsPage/ProductCard"
 import { useDispatch } from "react-redux"
 import { addItem } from "../features/items/itemsSlice"
 
+import { useForm } from "react-hook-form"
+
 
 const NewProductPage = () => {
-  const [name, setName] = useState("")
-  const [img, setImg] = useState("https://via.placeholder.com/300x200")
-  const [price, setPrice] = useState(0)
-  const [descr, setDescr] = useState("")
-  const [amount, setAmount] = useState("0")
-
-  const [checked, setChecked] = useState(false)
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+  const { register, handleSubmit, errors, watch } = useForm({
+    defaultValues: {
+      img: "https://via.placeholder.com/300x200"
+    }
+  })
 
   const dispatch = useDispatch()
 
-  const handleCheck = (e) => {
-    const check = e.target.checked
-    setChecked(check)
-
-    if (check) {
-      setAmount("∞")
-    } else {
-      setAmount("0")
-    }
+  const onSubmit = (data) => {
+    console.log(data)
+    dispatch(addItem(data))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const watchFields = watch(["name", "price", "descr", "img", "amount"])
+  console.log(watchFields)
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
 
-    dispatch(addItem({ name, img, price, descr, amount }))
-  }
+  //   dispatch(addItem({ name, img, price, descr, amount }))
+  // }
 
   return (
     <Container className="mt-5">
       <Row>
         <Col xs={6}>
-          <Form>
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="product name">
               <Form.Label>Name</Form.Label>
               <Form.Control
+                name="name"
+                ref={register({ required: "This is required", minLength: 4 })}
                 placeholder="Thing"
-                value={name}
-                onChange={e => setName(e.target.value)} />
+              />
+              {errors.name?.message}
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Image Link</Form.Label>
               <Form.Control
+                name="img"
+                ref={register({ required: true })}
                 placeholder="https://via.placeholder.com/300x200"
-                value={img}
-                onChange={e => setImg(e.target.value)}
               />
               <Form.Text className="text-muted">
                 Please, put here URL for your product image.
@@ -68,44 +67,41 @@ const NewProductPage = () => {
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Price</Form.Label>
               <Form.Control
+                name="price"
+                ref={register({ required: true })}
                 placeholder="0"
-                value={price}
-                onChange={e => setPrice(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Description</Form.Label>
               <Form.Control
+                name="descr"
+                ref={register}
                 placeholder="Cool thing for riding, writing, coding and something"
-                value={descr}
-                onChange={e => setDescr(e.target.value)} 
               />
             </Form.Group>
 
             <Form.Group controlId="formBasicCheckbox">
-              <Form.Check 
-                type="checkbox" 
+              <Form.Check
+                type="checkbox"
                 label="Infinite"
-                checked={checked}
-                onChange={handleCheck} 
               />
               <Form.Control
-                placeholder={checked ? "∞" : "0"}
-                disabled={checked}
-                value={amount}
-                onChange={e => setAmount(e.target.value)}
+                name="amount"
+                ref={register({ required: true })}
+                placeholder={"∞0"}
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
+            <Button variant="primary" type="submit" >
               Submit
             </Button>
           </Form>
         </Col>
 
         <Col>
-          <ProductCard product={{ name, img, price, descr, amount }} example/>
+          <ProductCard product={watchFields} example />
         </Col>
       </Row>
     </Container>

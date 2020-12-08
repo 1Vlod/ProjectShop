@@ -7,8 +7,8 @@ import ListGroup from "react-bootstrap/ListGroup"
 import { useDispatch } from "react-redux"
 import { addProduct, removeProduct } from "../../features/userCart/userCartSlice"
 
-const ProductCard = ({ cart, product, amount, example }) => {
 
+const ProductCard = ({ cart, product, amount, example }) => {
   const dispatch = useDispatch()
   const getBtnCart = () => {
     if (cart) {

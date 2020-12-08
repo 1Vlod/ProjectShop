@@ -9,6 +9,7 @@ import ProductsPage from "./ProductsPage"
 import CartPage from "./CartPage"
 import Menu from "../components/Menu"
 import FoodPage from './FoodPage'
+import NewProductPage from './NewProductPage'
 
 const Shop = () => {
 
@@ -28,6 +29,9 @@ const Shop = () => {
             </Route>
             <Route path="/food">
               <FoodPage/>
+            </Route>
+            <Route path="/newProduct">
+              <NewProductPage/>
             </Route>
           </Switch>
         </Col>

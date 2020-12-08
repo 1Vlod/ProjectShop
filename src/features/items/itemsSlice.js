@@ -44,16 +44,18 @@ export const itemsSlice = createSlice({
   name: 'items',
   initialState,
   reducers: {
-    increment: state => {
-      state.push({
-        name: "XBOX S",
-        price: "250$"
-      })
+    addItem: {
+      reducer: (state, action) => {
+        state.push(action.payload)
+      },
+      prepare: (product) => {
+        return { payload: {...product, id: nextProductId++}}      
+      }
     }
   },
 })
 
-export const { increment } = itemsSlice.actions
+export const { addItem } = itemsSlice.actions
 
 export const selectItems = state => state.items
 

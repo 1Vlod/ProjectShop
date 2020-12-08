@@ -26,7 +26,7 @@ export const { foodItemLoading, foodItemReceived } = foodSlice.actions
 export const fetchFoodItem = ({ query }) => async dispatch => {
   dispatch(foodItemLoading())
   let response
-
+  
   if (query) {
     response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
   } else {
@@ -34,7 +34,6 @@ export const fetchFoodItem = ({ query }) => async dispatch => {
   }
 
   const data = await response.json()
-  console.log(data)
   dispatch(foodItemReceived(data.meals[0]))
 }
 

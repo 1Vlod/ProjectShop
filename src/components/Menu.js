@@ -21,6 +21,9 @@ const Menu = () => {
         <LinkContainer to="/cart" className="text-light mt-3" activeClassName="bg-light text-dark rounded-pill">
           <Nav.Link className="h2">{userName}'s Cart</Nav.Link>
         </LinkContainer>
+        <LinkContainer to="/newProduct" className="text-light mt-3" activeClassName="bg-light text-dark rounded-pill">
+          <Nav.Link className="h2">Create</Nav.Link>
+        </LinkContainer>
       </div>
     </Nav>
   )
